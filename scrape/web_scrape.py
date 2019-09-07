@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-def scrape_standings(url,driver_path, csv_path):
+def scrape_standings(url, driver_path, csv_path):
 	driver = webdriver.Chrome(driver_path)
 	driver.get(url)
 	actions = ActionChains(driver)

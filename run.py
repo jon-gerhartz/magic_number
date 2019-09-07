@@ -55,5 +55,17 @@ def runner():
 	nl_bool = merge3['Lg'] == "NL"
 	nl = merge3[nl_bool]
 
-	return merge3
+	ale_bool = merge3["Div"] == "ALE"
+	ale_table = merge3[ale_bool]
+
+	mn_bool = merge3['MN'].notnull()
+	mn_teams = merge3[mn_bool]
+
+	mn_cols = ['Tm','W','L','Div','GR','MN']
+	mn_teams_short = mn_teams[mn_cols]
+
+	mn_wc_bool = merge3['MN WC'].notnull()
+	mn_wc = merge3[mn_wc_bool]
+
+	return mn_teams_short, mn_wc, al, nl
 
