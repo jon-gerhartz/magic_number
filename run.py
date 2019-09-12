@@ -26,7 +26,6 @@ def runner():
 	merge1 = magic.merge(al_wild_card, how='left', on='Tm')
 	merge2 = merge1.merge(nl_wild_card, how='left', on='Tm')
 
-
 	#create div leader mn calculation instances
 	ale_mn = div_magic(merge2, "ALE")
 	alw_mn = div_magic(merge2, "ALW")

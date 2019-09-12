@@ -1,22 +1,37 @@
 import pandas as pd
 import numpy as np
 
-def clean_data(data):
+def clean_data(raw):
 
+    #create list of non data rows
+    non_data = [1,7,13,19,20,21,27,33]
+
+    #drop non data rows
+    raw_rows = raw.drop(non_data, axis=0)
+
+    #create list of non data cols
+    drop_cols = ["Unnamed: 0"]
+
+    #drop non data cols
+    data = raw_rows.drop(drop_cols,axis=1)
+
+    
     data.columns = data.iloc[0]
 
+    #remove extra header
     data = data.iloc[1:len(data)]
+
+    #fill first col with DR
+    data = data.rename({'Unnamed: 0_level_1':'DR'}, axis=1)
+
     #create list of cols for magic df
-
-    data.columns = data.columns.fillna("DR")
-
     magic_cols = [0,1,2,3,7,8]
 
     #create df with condensed cols
     magic = data.iloc[:,magic_cols]
     
-
-    magic = magic.astype({'Lg': str,'D':str,'W':'int32','L':'int32'})
+    #set data type of Lg, D, W, L cols
+    magic = magic.astype({'DR':'int32','Lg': str,'D':str,'W':'int32','L':'int32'})
 
     #add Div column to magic
     magic['Div'] = magic['Lg'] + magic['D']
