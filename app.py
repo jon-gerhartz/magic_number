@@ -15,7 +15,7 @@ def index():
 @app.route('/magic', methods =['GET'])
 def magic():
 	data = runner()
-	return render_template('magic.html', tables=[data.to_html()])
+	return render_template('magic.html', tables=data[])#[data.to_html(index=False, bold_rows=True)])
 
 
 @app.route('/playoffs', methods =['GET'])

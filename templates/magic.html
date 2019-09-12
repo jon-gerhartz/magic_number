@@ -27,7 +27,7 @@
 
     <div class="container" style="margin-bottom: 20px">
     {% for table in tables %}
-    {{ table|safe }}
+    {{ table.to_html(index=False)|safe }}
 {% endfor %}
 </div>
 </body>

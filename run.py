@@ -26,7 +26,6 @@ def runner():
 	merge1 = magic.merge(al_wild_card, how='left', on='Tm')
 	merge2 = merge1.merge(nl_wild_card, how='left', on='Tm')
 
-
 	#create div leader mn calculation instances
 	ale_mn = div_magic(merge2, "ALE")
 	alw_mn = div_magic(merge2, "ALW")
@@ -55,5 +54,17 @@ def runner():
 	nl_bool = merge3['Lg'] == "NL"
 	nl = merge3[nl_bool]
 
-	return merge3
+	ale_bool = merge3["Div"] == "ALE"
+	ale_table = merge3[ale_bool]
+
+	mn_bool = merge3['MN'].notnull()
+	mn_teams = merge3[mn_bool]
+
+	mn_cols = ['Tm','W','L','Div','GR','MN']
+	mn_teams_short = mn_teams[mn_cols]
+
+	mn_wc_bool = merge3['MN WC'].notnull()
+	mn_wc = merge3[mn_wc_bool]
+
+	return mn_teams_short, mn_wc, al, nl
 
